@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --page-bg:
+        radial-gradient(circle at top left, rgba(136, 218, 255, 0.55), transparent 26%),
+        radial-gradient(circle at top right, rgba(116, 199, 255, 0.34), transparent 22%),
+        radial-gradient(circle at bottom center, rgba(183, 238, 255, 0.42), transparent 32%),
+        linear-gradient(140deg, #f3fbff 0%, #e9f7ff 38%, #dff2ff 68%, #eefaff 100%);
+    --glass-border: rgba(255, 255, 255, 0.72);
+    --glass-fill: rgba(255, 255, 255, 0.58);
+    --glass-strong: rgba(255, 255, 255, 0.82);
+    --surface-shadow: 0 18px 48px rgba(70, 131, 180, 0.12), 0 4px 16px rgba(148, 205, 255, 0.18);
+    --surface-shadow-strong: 0 24px 64px rgba(66, 139, 202, 0.16), 0 8px 24px rgba(182, 227, 255, 0.2);
+    --button-shadow: 0 12px 28px rgba(81, 165, 219, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    --button-shadow-soft: 0 10px 24px rgba(130, 191, 233, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    --primary-bg: linear-gradient(135deg, #4eb8ff 0%, #2d9fff 45%, #6ed4ff 100%);
+    --primary-text: #ffffff;
+    --secondary-bg: rgba(255, 255, 255, 0.72);
+    --secondary-text: #0f3b57;
+    --secondary-border: rgba(144, 207, 243, 0.45);
+    --toggle-track: linear-gradient(135deg, #96ddff 0%, #68c9ff 100%);
+}
+
+html.dark {
+    --page-bg:
+        radial-gradient(circle at top left, rgba(77, 162, 214, 0.34), transparent 24%),
+        radial-gradient(circle at top right, rgba(74, 194, 255, 0.18), transparent 24%),
+        radial-gradient(circle at bottom center, rgba(48, 99, 140, 0.3), transparent 32%),
+        linear-gradient(145deg, #071824 0%, #0a2434 42%, #0d2d40 100%);
+    --glass-border: rgba(166, 224, 255, 0.16);
+    --glass-fill: rgba(8, 24, 36, 0.76);
+    --glass-strong: rgba(9, 30, 45, 0.9);
+    --surface-shadow: 0 18px 48px rgba(0, 0, 0, 0.28), 0 4px 16px rgba(50, 127, 177, 0.16);
+    --surface-shadow-strong: 0 24px 64px rgba(0, 0, 0, 0.34), 0 8px 24px rgba(71, 171, 233, 0.14);
+    --button-shadow: 0 12px 28px rgba(33, 135, 203, 0.28), inset 0 1px 0 rgba(199, 239, 255, 0.14);
+    --button-shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(178, 229, 255, 0.08);
+    --primary-bg: linear-gradient(135deg, #5cc3ff 0%, #2c97d7 55%, #78d8ff 100%);
+    --primary-text: #f8fdff;
+    --secondary-bg: rgba(11, 36, 52, 0.84);
+    --secondary-text: #d7f2ff;
+    --secondary-border: rgba(132, 207, 247, 0.22);
+    --toggle-track: linear-gradient(135deg, #67cfff 0%, #2f97d6 100%);
+}
+
+body {
+    @apply bg-slate-50 font-body text-slate-900 antialiased;
+    background-image: var(--page-bg);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.glass-card {
+    border: 1px solid var(--glass-border);
+    background: var(--glass-fill);
+    box-shadow: var(--surface-shadow);
+    @apply backdrop-blur-xl;
+}
+
+.glass-card-strong {
+    border: 1px solid var(--glass-border);
+    background: var(--glass-strong);
+    box-shadow: var(--surface-shadow-strong);
+    @apply backdrop-blur-xl;
+}
+
+.btn-primary {
+    background: var(--primary-bg);
+    color: var(--primary-text);
+    box-shadow: var(--button-shadow);
+    @apply inline-flex items-center justify-center rounded-[999px] px-5 py-3 text-sm font-semibold transition duration-200;
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    border: 1px solid var(--secondary-border);
+    background: var(--secondary-bg);
+    color: var(--secondary-text);
+    box-shadow: var(--button-shadow-soft);
+    @apply inline-flex items-center justify-center rounded-[999px] px-5 py-3 text-sm font-semibold transition duration-200;
+    transform: translateY(0);
+}
+
+.theme-toggle {
+    border: 1px solid var(--secondary-border);
+    background: var(--secondary-bg);
+    color: var(--secondary-text);
+    box-shadow: var(--button-shadow-soft);
+    @apply inline-flex items-center gap-3 rounded-[999px] px-4 py-2 text-sm font-semibold;
+    transform: translateY(0);
+}
+
+.theme-toggle-floating {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 60;
+    backdrop-filter: blur(18px);
+}
+
+.theme-toggle-track {
+    background: var(--toggle-track);
+    @apply relative h-6 w-11 rounded-full transition;
+}
+
+.theme-toggle-thumb {
+    @apply absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition;
+    box-shadow: 0 2px 8px rgba(16, 24, 40, 0.18);
+}
+
+html.dark .theme-toggle-thumb {
+    transform: translateX(20px);
+}
+
+html.dark body {
+    color-scheme: dark;
+}
+
+html.dark body,
+html.dark .text-slate-950,
+html.dark .text-slate-900 {
+    color: rgb(239 250 255) !important;
+}
+
+html.dark .text-slate-800,
+html.dark .text-slate-700,
+html.dark .text-slate-600,
+html.dark .text-slate-500 {
+    color: rgb(186 221 239) !important;
+}
+
+html.dark .bg-slate-950 {
+    background: var(--primary-bg) !important;
+    color: var(--primary-text) !important;
+}
+
+html.dark .bg-white\/70,
+html.dark .bg-white\/80 {
+    background-color: rgba(10, 32, 47, 0.84) !important;
+}
+
+html.dark .border-slate-300,
+html.dark .border-white\/60,
+html.dark .border-white\/70 {
+    border-color: rgba(132, 207, 247, 0.22) !important;
+}
+
+html.dark .btn-primary {
+    background: var(--primary-bg) !important;
+    color: var(--primary-text) !important;
+}
+
+html.dark .btn-primary:hover {
+    filter: brightness(1.06);
+}
+
+html.dark .btn-secondary,
+html.dark .theme-toggle {
+    background: var(--secondary-bg) !important;
+    color: var(--secondary-text) !important;
+    border-color: var(--secondary-border) !important;
+}
+
+html.dark .btn-secondary:hover,
+html.dark .theme-toggle:hover {
+    filter: brightness(1.08);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.theme-toggle:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.theme-toggle:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .theme-toggle-floating {
+        right: 0.85rem;
+        bottom: 0.85rem;
+    }
+}
